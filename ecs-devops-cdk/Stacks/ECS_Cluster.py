@@ -12,7 +12,7 @@ from aws_cdk import (
 from constructs import Construct
 
 
-class EC2(Stack):
+class ECS(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -46,14 +46,12 @@ class EC2(Stack):
                                                     )
         cluster.add_asg_capacity_provider(capacity_provider)
 
-        # Create the ECS Task Definition with placeholder container (and named Task Execution IAM Role)
         execution_role = _iam.Role(self,
                                    "ecs-devops-project-execution-role",
-                                   assumed_by=iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
+                                   assumed_by=_iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
                                    role_name="ecs-devops-project-execution-role")
-
-        execution_role.add_to_policy(iam.PolicyStatement(
-            effect=iam.Effect.ALLOW,
+        execution_role.add_to_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
             resources=["*"],
             actions=[
                 "ecr:GetAuthorizationToken",
@@ -64,3 +62,28 @@ class EC2(Stack):
                 "logs:PutLogEvents"
             ]
         ))
+        execution_role.add_managed_policy( _iam.ManagedPolicy.from_aws_managed_policy_name(
+                "AmazonRDSFullAccess"
+            )
+        )
+
+        task_definition = _ecs.FargateTaskDefinition(self,
+                                                     "ecs-devops-project-task-definition",
+                                                     execution_role=execution_role,
+                                                     family="ecs-devops-project-task-definition")
+        container = task_definition.add_container(
+            "ecs-devops-project",
+            image=_ecs.ContainerImage.from_registry("amazon/amazon-ecs-sample")
+        )
+
+        # Create the ECS Service
+        service = _ecs.FargateService(self,
+                                      "ecs-devops-project-service",
+                                      cluster=cluster,
+                                      task_definition=task_definition,
+                                      service_name="ecs-devops-project-service")
+
+
+
+
+
