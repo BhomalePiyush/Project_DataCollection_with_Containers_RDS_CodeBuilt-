@@ -120,8 +120,8 @@ if __name__ == '__main__':
     print(type(list1), "Program Insialized")
 
     itemlist(list1) # calling amazon code
-        print("Amazon Updated")
-        print("Iteration Complete")
+    print("Amazon Updated")
+    print("Iteration Complete")
         #for minute in range(1, 61):
             #time.sleep(60)  # Delay for 1 minute (60 seconds)
             #print(f"{minute}minute")
