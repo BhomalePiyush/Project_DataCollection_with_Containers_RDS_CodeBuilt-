@@ -1,0 +1,7 @@
+beautifulsoup4==4.10.0
+aws-cdk-lib==2.12.0
+requests==2.27.1
+mysql.connector==2.2.9
+PYSCSI==2.1.0
+regex==2022.3.2
+constructs>=10.0.0,<11.0.0
