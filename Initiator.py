@@ -13,7 +13,10 @@ headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gec
 counter = 0  # Global counter to count submitted records
 
 
-client = boto3.client('rds', region_name='us-east-1')
+client = boto3.client('rds',
+                      aws_access_key_id="AKIA6OVGXMRN4LNSLVYR",
+                      aws_secret_access_key="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",
+                      region_name='us-east-1')
 response = client.describe_db_instances()
 dict1 = {}
 for db_instance in response['DBInstances']:
