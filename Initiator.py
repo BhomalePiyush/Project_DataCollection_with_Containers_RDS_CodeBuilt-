@@ -14,8 +14,8 @@ counter = 0  # Global counter to count submitted records
 
 
 client = boto3.client('rds',
-                      aws_access_key_id="AKIA6OVGXMRN4LNSLVYR",
-                      aws_secret_access_key="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",
+                      aws_access_key_id="AKIA6OVGXMRNSUZZ2HBO",
+                      aws_secret_access_key="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",
                       region_name='us-east-1')
 response = client.describe_db_instances()
 dict1 = {}
