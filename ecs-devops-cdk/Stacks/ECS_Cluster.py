@@ -31,6 +31,7 @@ class ECS(Stack):
         cluster = _ecs.Cluster(self,
                                "ecs-devops-project-cluster",
                                cluster_name="ecs-devops-project-cluster",
+                               enable_fargate_capacity_providers=True,
                                vpc=vpc)
 
         auto_scaling_group = _autoscaling.AutoScalingGroup(self, "ASG",
