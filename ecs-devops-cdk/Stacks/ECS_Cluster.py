@@ -34,18 +34,18 @@ class ECS(Stack):
                                enable_fargate_capacity_providers=True,
                                vpc=vpc)
 
-        auto_scaling_group = _autoscaling.AutoScalingGroup(self, "ASG",
-                                                           vpc=vpc,
-                                                           instance_type=_ec2.InstanceType("t2.micro"),
-                                                           machine_image=_ecs.EcsOptimizedImage.amazon_linux2(),
-                                                           min_capacity=1,
-                                                           max_capacity=5
-                                                           )
-
-        capacity_provider = _ecs.AsgCapacityProvider(self, "AsgCapacityProvider",
-                                                     auto_scaling_group=auto_scaling_group
-                                                    )
-        cluster.add_asg_capacity_provider(capacity_provider)
+        # auto_scaling_group = _autoscaling.AutoScalingGroup(self, "ASG",
+        #                                                    vpc=vpc,
+        #                                                    instance_type=_ec2.InstanceType("t2.micro"),
+        #                                                    machine_image=_ecs.EcsOptimizedImage.amazon_linux2(),
+        #                                                    min_capacity=1,
+        #                                                    max_capacity=5
+        #                                                    )
+        #
+        # capacity_provider = _ecs.AsgCapacityProvider(self, "AsgCapacityProvider",
+        #                                              auto_scaling_group=auto_scaling_group
+        #                                             )
+        # cluster.add_asg_capacity_provider(capacity_provider)
 
         execution_role = _iam.Role(self,
                                    "ecs-devops-project-execution-role",
