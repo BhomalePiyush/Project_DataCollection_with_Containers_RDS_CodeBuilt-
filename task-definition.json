@@ -6,7 +6,7 @@
     "containerDefinitions": [
         {
             "name": "ecs-devops-project",
-            "image": "ecs-devops-project-repository:0cc5d1f1265d008c33277e66f031e0f2471b884b",
+            "image": "ecs-devops-project-repository:489fc3e91508ed1fd81441bcae8858a772abcab0",
             "resourceRequirements": null,
             "essential": true,
             "portMappings": [
