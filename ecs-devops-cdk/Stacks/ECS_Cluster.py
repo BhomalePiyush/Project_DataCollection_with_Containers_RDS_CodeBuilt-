@@ -84,8 +84,3 @@ class ECS(Stack):
                                       task_definition=task_definition,
                                       service_name="ecs-devops-project-service"
                                       )
-
-
-
-
-

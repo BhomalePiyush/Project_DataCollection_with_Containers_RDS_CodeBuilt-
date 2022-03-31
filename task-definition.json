@@ -24,6 +24,6 @@
     "cpu": "512",
     "executionRoleArn": "arn:aws:iam::993560847451:role/ecs-devops-project-execution-role",
     "family": "ecs-devops-project-task-definition",
-    "taskRoleArn": "",
+    "taskRoleArn": "arn:aws:iam::993560847451:role/ecs-devops-project-execution-role",
     "placementConstraints": []
 }
