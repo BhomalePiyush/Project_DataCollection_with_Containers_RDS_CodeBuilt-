@@ -82,7 +82,8 @@ class ECS(Stack):
                                       "ecs-devops-project-service",
                                       cluster=cluster,
                                       task_definition=task_definition,
-                                      service_name="ecs-devops-project-service")
+                                      service_name="ecs-devops-project-service"
+                                      )
 
 
 
