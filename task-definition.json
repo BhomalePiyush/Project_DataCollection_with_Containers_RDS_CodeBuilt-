@@ -6,7 +6,7 @@
     "containerDefinitions": [
         {
             "name": "ecs-devops-project",
-            "image": "ecs-devops-project-repository:00000",
+            "image": "ecs-devops-project-repository:0cc5d1f1265d008c33277e66f031e0f2471b884b",
             "resourceRequirements": null,
             "essential": true,
             "portMappings": [
@@ -20,10 +20,13 @@
     ],
     "volumes": [],
     "networkMode": "awsvpc",
-    "memory": "1024",
-    "cpu": "512",
+    "memory": "4096",
+    "cpu": "2048",
     "executionRoleArn": "arn:aws:iam::993560847451:role/ecs-devops-project-execution-role",
     "family": "ecs-devops-project-task-definition",
     "taskRoleArn": "arn:aws:iam::993560847451:role/ecs-devops-project-execution-role",
+     "runtimePlatform": {
+        "operatingSystemFamily": "LINUX"
+    },
     "placementConstraints": []
 }
