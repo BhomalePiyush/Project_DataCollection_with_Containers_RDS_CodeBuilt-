@@ -67,9 +67,6 @@ class ECS(Stack):
         execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonRDSFullAccess")
                                           )
 
-        execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name(
-                                          "AmazonECSTaskExecutionRolePolicy")
-                                          )
         task_definition = _ecs.FargateTaskDefinition(self,
                                                      "ecs-devops-project-task-definition",
                                                      execution_role=execution_role,
