@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 # Install application
+COPY Initiator.py ./
 COPY itemlist.txt ./
 COPY app.py ./
 # Run application
