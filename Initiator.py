@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 import re
 import time
+import os
 
 
 headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0',
@@ -14,7 +15,9 @@ counter = 0  # Global counter to count submitted records
 
 
 client = boto3.client('rds',
-                      region_name='us-east-1')
+                      region_name='us-east-1',
+                      aws_access_key_id=os.getenv('AWS_ACCESS_KEY'),
+                      aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'))
 response = client.describe_db_instances()
 dict1 = {}
 for db_instance in response['DBInstances']:
