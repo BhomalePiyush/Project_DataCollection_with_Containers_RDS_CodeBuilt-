@@ -40,6 +40,15 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+    
+
+    - name: Add secrets to Task Definition
+      run: |
+        sed -i "s/<aws_access_key>/$ACCESS_KEY/g" task-definition.json
+        sed -i "s/<aws_secret_access_key>/$SECRET_ACCESS_KEY/g" task-definition.json
+      env:
+        ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def

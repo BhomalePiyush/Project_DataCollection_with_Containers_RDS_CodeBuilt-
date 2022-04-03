@@ -82,5 +82,12 @@ class ECS(Stack):
                                       "ecs-devops-project-service",
                                       cluster=cluster,
                                       task_definition=task_definition,
-                                      service_name="ecs-devops-project-service"
+                                      service_name="ecs-devops-project-service",
+                                      assign_public_ip=True,
+                                      min_healthy_percent=100,
+                                      security_groups=_ec2.SecurityGroup.from_security_group_id(self, "SG",
+                                                                                                "sg-09b290e6a8740cbd8",
+                                                                                                mutable=False
+                                                                                                ),
+
                                       )
