@@ -1,5 +1,4 @@
 FROM python:3
-RUN mkdir /app
 ADD requirements.txt /app
 ADD itemlist.txt /app
 ADD Initiator.py /app
