@@ -2,8 +2,8 @@ FROM python:3
 ADD requirements.txt /app
 ADD itemlist.txt /app
 ADD Initiator.py /app
-RUN pip install -r requirements.txt
 WORKDIR /app
+RUN pip install -r requirements.txt
 CMD ['python', 'Initiator.py']
 # Set application working directory
 #WORKDIR /usr/src/app
