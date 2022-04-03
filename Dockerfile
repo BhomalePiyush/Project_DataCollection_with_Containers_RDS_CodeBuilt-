@@ -1,12 +1,19 @@
 FROM python:3
+RUN mkdir /app
+ADD requirements.txt /app
+ADD itemlist.txt /app
+ADD Initiator.py /app
+RUN pip install -r requirements.txt
+WORKDIR /app
+CMD ['python', 'Initiator.py']
 # Set application working directory
-WORKDIR /usr/src/app
+#WORKDIR /usr/src/app
 # Install requirements
-COPY requirements.txt /usr/src/app
-RUN pip install --no-cache-dir -r requirements.txt
+#COPY requirements.txt /usr/src/app
+#RUN pip install --no-cache-dir -r requirements.txt
 # Install application
-COPY Initiator.py /usr/src/app
-COPY itemlist.txt /usr/src/app
-COPY app.py /usr/src/app
+#COPY Initiator.py /usr/src/app
+#COPY itemlist.txt /usr/src/app
+#COPY app.py /usr/src/app
 # Run application
-CMD python Initiator.py
+#CMD python Initiator.py
