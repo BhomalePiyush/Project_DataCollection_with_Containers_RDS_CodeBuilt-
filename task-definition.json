@@ -8,7 +8,14 @@
             "name": "ecs-devops-project",
             "image": "ecs-devops-project-repository:00000",
             "resourceRequirements": null,
-            "essential": true
+            "essential": true,
+             "portMappings": [
+                {
+                    "containerPort": "8080",
+                    "protocol": "tcp"
+                }
+             ]
+
         }
     ],
     "volumes": [],
