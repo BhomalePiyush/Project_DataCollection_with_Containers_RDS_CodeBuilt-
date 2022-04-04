@@ -60,7 +60,10 @@ class ECS(Stack):
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
                 "logs:CreateLogStream",
-                "logs:PutLogEvents"
+                "logs:PutLogEvents",
+                "ssm:GetParameters",
+                "secretsmanager:GetSecretValue",
+                "kms:Decrypt"
             ]
         ))
 

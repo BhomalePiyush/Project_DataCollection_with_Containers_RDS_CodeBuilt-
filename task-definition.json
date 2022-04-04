@@ -15,7 +15,7 @@
                     "protocol": "tcp"
                 }
             ],
-            "environment": [
+            "secrets": [
                 {
                     "name": "AWS_ACCESS_KEY",
                     "valueFrom": "arn:aws:ssm:us-east-1:993560847451:parameter/AccesskeyID"
