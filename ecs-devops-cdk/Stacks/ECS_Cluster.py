@@ -66,6 +66,8 @@ class ECS(Stack):
 
         execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonRDSFullAccess")
                                           )
+        execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess")
+                                          )
 
 
         task_definition = _ecs.FargateTaskDefinition(self,
@@ -85,9 +87,9 @@ class ECS(Stack):
                                       service_name="ecs-devops-project-service",
                                       assign_public_ip=True,
                                       min_healthy_percent=100,
-                                      security_groups=_ec2.SecurityGroup.from_security_group_id(self, "SG",
+                                      security_groups=[_ec2.SecurityGroup.from_security_group_id(self, "SG",
                                                                                                 "sg-09b290e6a8740cbd8",
                                                                                                 mutable=False
-                                                                                                ),
+                                                                                                )]
 
                                       )

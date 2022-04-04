@@ -41,14 +41,6 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
-    - uses: actions/checkout@v2
-    - name: Add secrets to Task Definition
-      env:
-        ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: |
-        sed -i "s/<aws_access_key>/$ACCESS_KEY/g" task-definition.json
-        sed -i "s/<aws_secret_access_key>/$SECRET_ACCESS_KEY/g" task-definition.json
       
         
     - name: Fill in the new image ID in the Amazon ECS task definition
