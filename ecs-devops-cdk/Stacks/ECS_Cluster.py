@@ -56,7 +56,7 @@ class ECS(Stack):
             resources=["*",
                        "arn:aws:ssm:us-east-1:993560847451:parameter/AccesskeyID",
                        "arn:aws:ssm:us-east-1:993560847451:parameter/Secretaccesskey",
-                       "arn:aws:kms:us-east-1:993560847451:key/23016c81-48f3-402f-b4d4-7dcc2db93a1d"
+                       "arn:aws:kms:us-east-1:993560847451:key/a4389550-1d7a-4a2a-8172-a7e5af432e59"
                        ],
             actions=[
                 "ecr:GetAuthorizationToken",
@@ -71,11 +71,9 @@ class ECS(Stack):
             ]
         ))
 
-        execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonRDSFullAccess")
-                                          )
-        execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess")
-                                          )
+        #execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonRDSFullAccess"))
 
+        #execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"))
 
         task_definition = _ecs.FargateTaskDefinition(self,
                                                      "ecs-devops-project-task-definition",
@@ -95,8 +93,8 @@ class ECS(Stack):
                                       assign_public_ip=True,
                                       min_healthy_percent=100,
                                       security_groups=[_ec2.SecurityGroup.from_security_group_id(self, "SG",
-                                                                                                "sg-09b290e6a8740cbd8",
-                                                                                                mutable=False
-                                                                                                )]
+                                                                                                 "sg-09b290e6a8740cbd8",
+                                                                                                 mutable=False
+                                                                                                 )]
 
                                       )

@@ -53,9 +53,9 @@
     "networkMode": "awsvpc",
     "memory": "4096",
     "cpu": "2048",
-    "executionRoleArn": "arn:aws:iam::993560847451:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::993560847451:role/ecs-devops-project-execution-role",
     "family": "ecs-devops-project-task-definition",
-    "taskRoleArn": "arn:aws:iam::993560847451:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::993560847451:role/ecs-devops-project-execution-role",
     "runtimePlatform": {
         "operatingSystemFamily": "LINUX"
     },
