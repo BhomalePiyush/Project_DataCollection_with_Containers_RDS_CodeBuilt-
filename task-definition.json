@@ -15,6 +15,8 @@
                     "protocol": "tcp"
                 }
             ],
+            "environment": null,
+            "environmentFiles": [],
             "secrets": [
                 {
                     "name": "AWS_ACCESS_KEY",
@@ -25,8 +27,6 @@
                     "valueFrom": "arn:aws:ssm:us-east-1:993560847451:parameter/Secretaccesskey"
                 }
             ],
-            "environmentFiles": [],
-            "secrets": null,
             "mountPoints": null,
             "volumesFrom": null,
             "hostname": null,

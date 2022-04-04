@@ -53,7 +53,11 @@ class ECS(Stack):
                                    role_name="ecs-devops-project-execution-role")
         execution_role.add_to_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
-            resources=["*"],
+            resources=["*",
+                       "arn:aws:ssm:us-east-1:993560847451:parameter/AccesskeyID",
+                       "arn:aws:ssm:us-east-1:993560847451:parameter/Secretaccesskey",
+                       "arn:aws:kms:us-east-1:993560847451:key/23016c81-48f3-402f-b4d4-7dcc2db93a1d"
+                       ],
             actions=[
                 "ecr:GetAuthorizationToken",
                 "ecr:BatchCheckLayerAvailability",
