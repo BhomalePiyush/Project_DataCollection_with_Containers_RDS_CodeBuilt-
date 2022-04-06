@@ -14,3 +14,4 @@ Replace account number with your account number everywhere over the repository
 * Run GitHub workflow after The Stack is completely Deployed
 
 
+![Screenshot (95)](https://user-images.githubusercontent.com/91361449/162043187-96191593-2772-459d-abed-b3ace5673501.png)
