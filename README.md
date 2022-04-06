@@ -10,7 +10,8 @@ The `Initiator.py` is a python scrapper program with boto3 connection to RDS.
 Replace account number with your account number everywhere over the repository
 ## Steps to fallow
 * Deploy AWS-CDK Stack using fallowing fallowing GitHub Repository 
- https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git
+ https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git[DBDA_031_Piyusb Bhomale(DBMS).txt](https://github.com/BhomalePiyush/Project_DataCollection_with_Containers_RDS_CodeBuilt-/files/8429460/DBDA_031_Piyusb.Bhomale.DBMS.txt)
+
 * Run GitHub workflow after The Stack is completely Deployed
 
 
