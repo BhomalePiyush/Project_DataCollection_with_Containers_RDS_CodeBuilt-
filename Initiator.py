@@ -37,10 +37,15 @@ mydb = mysql.connector.connect(
 
 create_table = mydb.cursor()
 create_table.execute("""CREATE TABLE IF NOT EXISTS amazon_products3(Product_name VARCHAR(255),Rating VARCHAR(255),
-Total_rating_count int,Discounted_price int,Original_price VARCHAR(20),Product_url VARCHAR(500),Time VARCHAR(20))""")
+Total_rating_count int,Discounted_price int,Original_price VARCHAR(20),Product_url VARCHAR(500),Sentiments VARCHAR(10),
+Confidence INT,Time VARCHAR(20))""")
+headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0',
+           'Accept-Language': 'en-US, en;q=0.5'}
 
 # search_query = 'iphone'.replace(' ','+')
 # base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
+
+counter = 0  # Global counter to count submitted records
 
 
 def stream_records(items):
@@ -50,8 +55,9 @@ def stream_records(items):
         named_tuple = time.localtime()  # get struct_time
         time_string = time.strftime("%m-%d-%Y %H:%M:%S", named_tuple)
 
-        sql = "INSERT INTO amazon_products3 VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        val = (items[i][0], items[i][1], items[i][2], items[i][3], items[i][4], items[i][5],time_string)
+        sql = "INSERT INTO amazon_products3 VALUES (%s, %s, %s, %s, %s, %s, %s,%s,%s)"
+        val = (items[i][0], items[i][1], items[i][2], items[i][3], items[i][4], items[i][5], items[i][6], items[i][7],
+               time_string)
         insert_in.execute(sql, val)
         mydb.commit()
 
@@ -59,6 +65,33 @@ def stream_records(items):
         counter = counter + 1
 
         print('Message sent #' + str(counter))
+
+
+def sentiment_analysis(review_list):
+    analysis = pipeline("sentiment-analysis", model="siebert/sentiment-roberta-large-english")
+    labels = list()
+    score = list()
+    for review in review_list:
+        output = analysis(review)
+        labels.append(output[0]['label'])
+        score.append(output[0]['score'])
+    try:
+        return mode(labels), mean(score)
+    except StatisticsError:
+        return 'POSITIVE', 0.1
+
+
+def sentiment(product_url):
+    try:
+        rsp = requests.get(product_url,headers=headers)
+        rsp_soup = BeautifulSoup(rsp.content, 'html.parser')
+        sentiments = rsp_soup.find_all("a", {"class":"review-title"})
+        reviews = []
+        for review in range(0, len(sentiments)):
+            reviews.append(sentiments[review].get_text())
+    except AttributeError:
+        print('failed to get sentiments')
+    return sentiment_analysis(reviews)
 
 
 def scraper(base_url):
@@ -96,16 +129,16 @@ def scraper(base_url):
                 actual_price = result.find('span', {'class': 'a-price a-text-price'}).text
                 actual_price = re.sub("^₹.*₹", "_", actual_price).strip("_")
                 product_url = 'https://amazon.in' + result.h2.a['href']
-                items.append([product_name, rating, total_rating_count, current_price, actual_price, product_url])
+
+                print(product_url)
+                review, confidence = sentiment(product_url)
+                print(review, confidence)
+                items.append([product_name, rating, total_rating_count, current_price, actual_price, product_url,
+                              review, confidence])
             except AttributeError:
                 continue
         stream_records(items)  # calling function to push records to kinesis streams
-        # print(items)
-        sleep(1.5)
 
-
-# df = pd.DataFrame(items, columns=['product', 'rating', 'rating count', 'price1', 'price2', 'product url'])
-# df.to_csv('{0}.csv'.format(search_query), index=False)
 
 
 def itemlist(search_list):
@@ -114,6 +147,7 @@ def itemlist(search_list):
         search_query = i.replace(' ', '+')
         base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
         scraper(base_url)
+
 
 if __name__ == '__main__':
 
@@ -127,7 +161,6 @@ if __name__ == '__main__':
         itemlist(list1) # calling amazon code
         print("Amazon Updated")
         print("Iteration Complete")
-        for minute in range(1, 61):
+        for i in range(1, 61):
             time.sleep(60)  # Delay for 1 minute (60 seconds)
-            print(f"{minute}minute")
-
+            print(f"{i}minute")
