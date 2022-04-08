@@ -1,8 +1,8 @@
 ﻿# Welcome to  My Project_DataCollection_with_Containers_RDS_CodeBuilt-
  This is a Python project developed by me in order to create an automated flow using web-scraping
-and storeing it to RDS with CDK.
+and storing it to RDS with CDK.
 The `Initiator.py` is a python scrapper program with boto3 connection to RDS.
-* The envornment veriables are added to path for boto3 
+* The environment variables are added to path for boto3 
 * You have to store your aws secrets inside `Parameter Store` inside `AWS Systems Manager` select SecureStringas option and use KMS key encryption
 * With name `AccesskeyID` for AWS_ACCESS_KEY
 * With name `Secretaccesskey` for AWS_SECRET_ACCESS_KEY
