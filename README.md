@@ -1,5 +1,5 @@
 ﻿# Welcome to  My Project_DataCollection_with_Containers_RDS_CodeBuilt-
- This is a Python devloped by me in orrder to create an automated flow using web-scraping
+ This is a Python project developed by me in order to create an automated flow using web-scraping
 and storeing it to RDS with CDK.
 The `Initiator.py` is a python scrapper program with boto3 connection to RDS.
 * The envornment veriables are added to path for boto3 
