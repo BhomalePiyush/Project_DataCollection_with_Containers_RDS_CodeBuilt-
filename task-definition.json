@@ -25,7 +25,12 @@
                 {
                     "name": "AWS_SECRET_ACCESS_KEY",
                     "valueFrom": "arn:aws:ssm:us-east-1:993560847451:parameter/Secretaccesskey"
+                },
+                {
+                    "name": "databasepassword",
+                    "valueFrom": "arn:aws:ssm:us-east-1:993560847451:parameter/databasepassword"
                 }
+
             ],
             "mountPoints": null,
             "volumesFrom": null,

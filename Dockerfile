@@ -1,6 +1,7 @@
 FROM python:3
 ENV AWS_ACCESS_KEY=$AWS_ACCESS_KEY
 ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+ENV databasepassword=$databasepassword
 WORKDIR /usr/src/app
 
 COPY requirements.txt ./
