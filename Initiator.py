@@ -31,7 +31,7 @@ print(dict1['Endpoint'])
 mydb = mysql.connector.connect(
     host=dict1['Endpoint'],
     user="vitaproject",
-    password="vitafinalproject",
+    password=os.getenv('databasepassword'),
     database="ProjectDatabase"
 )
 
