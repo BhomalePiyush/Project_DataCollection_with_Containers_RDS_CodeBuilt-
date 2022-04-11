@@ -144,12 +144,11 @@ def scraper(base_url):
 print(scraper.__doc__)
 
 def itemlist(search_list):
-
+    """Taking items one by one from itemlist.txt"""
     for i in search_list:
         search_query = i.replace(' ', '+')
         base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
         scraper(base_url)
-
 
 if __name__ == '__main__':
 
