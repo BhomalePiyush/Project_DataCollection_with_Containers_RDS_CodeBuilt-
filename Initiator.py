@@ -79,6 +79,7 @@ def sentiment_analysis(review_list):
 
 
 def sentiment(product_url):
+    """Sentiment function is written for scrapping reviews  from the product url"""
     try:
         rsp = requests.get(product_url, headers=headers)
         rsp_soup = BeautifulSoup(rsp.content, 'html.parser')
