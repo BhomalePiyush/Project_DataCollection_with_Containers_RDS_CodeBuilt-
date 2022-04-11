@@ -63,7 +63,7 @@ def stream_records(items):
         counter = counter + 1
 
         print('Message sent #' + str(counter))
-
+print(stream_records.__doc__)
 
 def sentiment_analysis(review_list):
     """"This sentiment_analysis function is written to find sentiments and score"""
