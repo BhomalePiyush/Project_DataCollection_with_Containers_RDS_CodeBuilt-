@@ -5,15 +5,13 @@ import re
 import time
 import mysql.connector
 from transformers import pipeline
-from statistics import mean,mode, StatisticsError
+from statistics import mean, mode, StatisticsError
 import os
-
 
 headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0',
            'Accept-Language': 'en-US, en;q=0.5'}
 
 counter = 0  # Global counter to count submitted records
-
 
 client = boto3.client('rds',
                       region_name='us-east-1',
@@ -25,7 +23,6 @@ for db_instance in response['DBInstances']:
     if db_instance['DBInstanceIdentifier'] == 'projectdatabase':
         dict1['DBInstanceIdentifier'] = db_instance['DBInstanceIdentifier']
         dict1['Endpoint'] = db_instance['Endpoint']["Address"]
-
 
 print(dict1['Endpoint'])
 mydb = mysql.connector.connect(
@@ -83,9 +80,9 @@ def sentiment_analysis(review_list):
 
 def sentiment(product_url):
     try:
-        rsp = requests.get(product_url,headers=headers)
+        rsp = requests.get(product_url, headers=headers)
         rsp_soup = BeautifulSoup(rsp.content, 'html.parser')
-        sentiments = rsp_soup.find_all("a", {"class":"review-title"})
+        sentiments = rsp_soup.find_all("a", {"class": "review-title"})
         reviews = []
         for review in range(0, len(sentiments)):
             reviews.append(sentiments[review].get_text())
@@ -149,18 +146,19 @@ def itemlist(search_list):
         search_query = i.replace(' ', '+')
         base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
         scraper(base_url)
+
+
 print(itemlist.__doc__)
 
 if __name__ == '__main__':
-
     lst = open('itemlist.txt', "r", encoding='utf-8').readlines()
     list1 = []
     for i in lst:
         list1.append(i.strip())
 
-    print(type(list1), "Program Insialized")
+    print(type(list1), "Program Initialized")
     for i in range(1):
-        itemlist(list1) # calling amazon code
+        itemlist(list1)  # calling amazon code
         print("Amazon Updated")
         print("Iteration Complete")
         for i in range(1, 61):
