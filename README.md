@@ -15,4 +15,5 @@ and storing it to RDS with CDK.
 * Run GitHub workflow after The Stack is completely Deployed.
 
 
-![Screenshot (95)](https://user-images.githubusercontent.com/91361449/162043187-96191593-2772-459d-abed-b3ace5673501.png)
+
+![ProjectArchi](https://user-images.githubusercontent.com/101546734/162761324-05eaccda-bc93-436e-ba37-76bf9bd20e74.jpg)
