@@ -65,6 +65,7 @@ def stream_records(items):
 
 
 def sentiment_analysis(review_list):
+    """"This sentiment_analysis function is written to find sentiments and score"""
     analysis = pipeline("sentiment-analysis", model="siebert/sentiment-roberta-large-english")
     labels = list()
     score = list()
