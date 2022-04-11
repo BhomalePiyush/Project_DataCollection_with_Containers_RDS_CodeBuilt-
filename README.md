@@ -11,7 +11,7 @@ and storing it to RDS with CDK.
 * Replace account number with your account number everywhere over the repository.
 ## Steps to follow
 * Deploy AWS-CDK Stack using following GitHub Repository 
- https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git[DBDA_031_Piyusb Bhomale(DBMS).txt]
+ https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git
 * Run GitHub workflow after The Stack is completely Deployed.
 
 
