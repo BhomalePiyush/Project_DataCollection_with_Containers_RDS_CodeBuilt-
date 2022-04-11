@@ -141,7 +141,7 @@ def scraper(base_url):
                 continue
         stream_records(items)  # calling function to push records to kinesis streams
 
-
+print(scraper.__doc__)
 
 def itemlist(search_list):
 
