@@ -6,12 +6,12 @@ and storing it to RDS with CDK.
 * You have to store your aws secrets inside `Parameter Store` inside `AWS Systems Manager` select SecureString as option and use KMS key encryption
 * With name `AccesskeyID` for the AWS_ACCESS_KEY
 * With name `Secretaccesskey` for the AWS_SECRET_ACCESS_KEY
-* Witn name `databasepassword` for the RDS Database Password
+* Witn name `databasepassword` for the RDS Database Password:vitafinalproject or you can set as you need visit below given repo replace database password in DataBase.py
 * You can also create your own KMS key with desired permissions
 * Replace account number with your account number everywhere over the repository.
 ## Steps to follow
 * Deploy AWS-CDK Stack using following GitHub Repository 
- https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git[DBDA_031_Piyusb Bhomale(DBMS).txt]
+ https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git
 * Run GitHub workflow after The Stack is completely Deployed.
 
 
